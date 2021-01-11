@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@400;500;700&display=swap");
+
+$Very-Dark-Magenta: hsl(300, 43%, 22%);
+$Soft-Pink: hsl(333, 80%, 67%);
+$Dark-Grayish-Magenta: hsl(303, 10%, 53%);
+$Light-Grayish-Magenta: hsl(300, 24%, 96%);
+
+%transition {
+  transition: 0.4s;
+}
+
+$mobile: 634px;
+$md: 910px;
+$laptop: 1080px;
+
+@mixin mobile {
+  @media screen and (max-width: $mobile) {
+    @content;
+  }
+}
+@mixin md {
+  @media screen and (max-width: $md) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media screen and (max-width: $laptop) {
+    @content;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Spartan", sans-serif;
+  color: $Very-Dark-Magenta;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: -0.04rem;
+  line-height: 1;
+  @extend %transition;
+
+  @include md {
+    font-size: 2.5rem;
+  }
+
+  @include mobile {
+    font-size: 2rem;
+  }
+}
+
+h4 {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  letter-spacing: -0.01rem;
+}
+
+p {
+  color: $Dark-Grayish-Magenta;
+  letter-spacing: -0.01rem;
+  line-height: 1.5;
+}
+
+i {
+  color: orange;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: no-repeat url("../images/bg-pattern-top-desktop.svg"),
+    no-repeat bottom right url("../images/bg-pattern-bottom-desktop.svg");
+
+  @include mobile {
+    background: no-repeat url("../images/bg-pattern-top-mobile.svg"),
+      no-repeat bottom left/100% url("../images/bg-pattern-bottom-mobile.svg");
+  }
+}
+
+.container {
+  max-width: 1110px;
+  margin: 2rem;
+  @extend %transition;
+
+  @include md {
+    margin: 5rem 1.5rem;
+  }
+}
+
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 4.5rem;
+  @extend %transition;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    margin-bottom: 3rem;
+  }
+}
+
+.title {
+  width: 90%;
+  @extend %transition;
+
+  @include mobile {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+
+    @include mobile {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.rating {
+  display: grid;
+  width: 100%;
+  row-gap: 1rem;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  @include laptop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-card {
+    display: flex;
+    align-items: center;
+    background: $Light-Grayish-Magenta;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1.2rem 2rem;
+
+    @include md {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    &:first-child {
+      grid-area: 1 / 1 / 2 / 11;
+    }
+    &:nth-child(2) {
+      grid-area: 2 / 2 / 3 / 12;
+    }
+    &:last-child {
+      grid-area: 3 / 3 / 4 / 13;
+    }
+
+    .stars {
+      margin-right: 2rem;
+      @extend %transition;
+
+      @include md {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+.testimonials-container {
+  display: grid;
+  column-gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  @extend %transition;
+
+  @include md {
+    column-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: unset;
+  }
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.testimonial {
+  background: $Very-Dark-Magenta;
+  padding: 2.5rem 2rem;
+  border-radius: 0.5rem;
+  @extend %transition;
+
+  @include md {
+    margin-bottom: 1rem;
+  }
+
+  &:first-child {
+    grid-area: 1 / 1 / 15 / 2;
+
+    @include md {
+      grid-area: unset;
+    }
+  }
+  &:nth-child(2) {
+    grid-area: 2 / 2 / 16 / 3;
+
+    @include md {
+      grid-area: unset;
+    }
+  }
+  &:last-child {
+    grid-area: 3 / 3 / 17 / 4;
+
+    @include md {
+      grid-area: unset;
+    }
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.6rem;
+
+    img {
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1.2rem;
+    }
+
+    h4 {
+      font-weight: 500;
+      letter-spacing: 0.01rem;
+      color: white;
+
+      span {
+        letter-spacing: -0.01rem;
+        font-weight: 400;
+        color: $Soft-Pink;
+      }
+    }
+  }
+
+  p {
+    color: white;
+    font-size: 0.8rem;
+    line-height: 1.7;
+  }
+}
